@@ -3,7 +3,8 @@ Vector field topology (VFT) [Ref. 1, 2] is an intuitive visualization technique 
 
 VFT methods have been used in many fields including fluid flow analysis, computer vision and photonics.  
 
-
+## Usage
+Please cite the papers mentioned in the reference section and this github repository if you use the code for your research/work.
 
 ## Sample output
 For a test vector filed u<sub>x</sub> = -X<sup>2</sup> + Y<sup>2</sup>, u<sub>y</sub> = X<sup>2</sup> + Y<sup>2</sup> - 2, the calculated vector field topology is shown below (with quiver lines and without quiver lines):
