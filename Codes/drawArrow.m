@@ -7,7 +7,7 @@
 function yout = drawArrow(x,y,X,Y,ux,uy,clr)
 
 arrow_pos_fct = 0.3;
-arrow_len_fct = 0.04;
+arrow_len_fct = 0.08;
 
 % Calculate the length of the curve
 % arc length = sum(dx^2 + dy^2);
@@ -68,7 +68,7 @@ yp1 = y1;
 xp2 = drct*(x2-x1);    % Change direction depending on the dot product result
 yp2 = drct*(y2-y1);
 
-quiver(xp1,yp1,xp2,yp2,2,'MaxHeadSize',14,'linewidth',2,'color',clr,'autoscale','off');
+quiver(xp1,yp1,xp2,yp2,4,'MaxHeadSize',24,'linewidth',2,'color',clr,'autoscale','off');
 
 
 

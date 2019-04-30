@@ -15,18 +15,16 @@ x = linspace(xL,xU,Nt);
 y = linspace(yL,yU,Nt);
 
 [X2,Y2] = meshgrid(x,y);
-
-% ux = exp(-X.^2 - Y.^2).*(-2*X.^2 + 1);
-% uy = exp(-X.^2 - Y.^2).*(-2*Y.*X);
+% 
+% ux = exp(-X2.^2 - Y2.^2).*(-2*X2.^2 + 1);
+% uy = exp(-X2.^2 - Y2.^2).*(-2*Y2.*X2);
 % 
 ux = Y2.^2 - X2.^2;
 uy = X2.^2 + Y2.^2 - 2;
 
 % size(ux)
 % size(X2)
-% ux = Y.^2 - sin(0.5*pi*X.^2);
-% uy = X.^2 + Y.^2 - 2;
+% ux = Y2.^2 - sin(0.5*pi*X2.^2);
+% uy = X2.^2 + Y2.^2 - 2;
 
-% ux = -Y;
-% uy = 3*X;
 

@@ -29,9 +29,9 @@ yL = min(Y(:));
 dx = X(1,2) - X(1,1);
 dy = Y(2,1) - Y(1,1);
 
-red_fct = 0.2*drct;  % red_fct * dx = length of locus line-segment
+red_fct = 0.2*drct;   % red_fct * dx = length of locus line-segment
 vic_tol = 0.01;       % vic_tol * dx = maximum radial distance from a sink point where the locus terminates
-max_length = 1200;   % Maximum no. of locus points
+max_length = 2200;    % Maximum no. of locus points
 
 xlocus(1) = x0;
 ylocus(1) = y0;
