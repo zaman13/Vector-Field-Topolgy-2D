@@ -1,8 +1,11 @@
 
 % Mohammad Asif Zaman
+% Vector Field Topology (2D)
+
 % Version 1.3 April 25, 2019
 % Version 1.4.4 April 29, 2019
-% Vector Field Topology (2D)
+% Version 1.5 May 24, 2019
+
 
 
 % Functions required
@@ -29,7 +32,13 @@ clc; clf;
 path = 'Data/';
 path_write = [path 'Data_out/'];
 data_write = 'n';
+locus_write = 'y';
+% <<<======================================================================
 
+
+% Control parameters
+% ======================================================================>>>
+ctrl_locus_test = 'y';
 % <<<======================================================================
 
 
@@ -47,6 +56,8 @@ rlim = 1000;      % allowed maximum radial extent of critical points
 min_dist_tol = 2; % If seperation between 2 critical points is less than 
                   % min_dist_tol * dx, then the 2 points are considered
                   % identical.
+
+locus_dist_tol = 1e-2;   % Minimum RMS separation between loci for them to be considered unique
 % <<<======================================================================
 
 
@@ -368,6 +379,15 @@ fprintf('Time required for calculating the integral lines = %1.2f sec\n',tlocus)
 
 
 
+% Finding the unique locuses
+% ======================================================================>>>
+
+if ctrl_locus_test == 'y'
+    [xlocus,ylocus] = unique_locus(xlocus,ylocus,locus_dist_tol);
+end
+
+% <<<======================================================================
+
 
 % Plotting the integral lines
 % ======================================================================>>>
@@ -403,6 +423,29 @@ pbaspect([1 1 1]);
 
 % <<<======================================================================
 
+
+% Matrix write
+% ======================================================================>>>
+if locus_write == 'y'
+    sz1 = length(xlocus);
+    sz2 = length(xlocus{end});
+    xM = zeros(sz2,sz1);
+    yM = xM;
+    
+    for m = 1:length(xlocus)
+        for n = 1:length(xlocus{m})
+            xM(n,m) = xlocus{m}(n);
+            yM(n,m) = xlocus{m}(n);
+        end
+    end
+    
+    csvwrite('xM.csv',xM);
+    csvwrite('yM.csv',yM);
+    
+end
+        
+
+% <<<======================================================================
 
 
 
