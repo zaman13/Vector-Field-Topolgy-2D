@@ -1,5 +1,5 @@
 # Vector-Field-Topolgy-2D
-Vector field topology (VFT) [Ref. 1, 2] is an intuitive visualization technique of vector fields. It is a representation of the global topology based on an analysis of the critical points and their connections. For a complex vector field, it can be difficult to understand the field properties by plotting streamlines or field lines (quiver). VFT techniques give a minimalistic representation of the field which is more intuitve.
+Vector field topology (VFT) [Ref. 1, 2] is an intuitive visualization technique of vector fields. It is a representation of the global topology based on an analysis of the critical points and their connections. For a complex vector field, it can be difficult to understand the field properties by plotting streamlines or field lines (quiver). By showing only the critical points and key integral lines connecting those points, the VFT technique produces a minimalistic intuitive representation of the field.
 
 VFT methods have been used in many fields including fluid flow analysis, computer vision and photonics.  
 
