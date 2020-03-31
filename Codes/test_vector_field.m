@@ -1,7 +1,7 @@
 % Mohammad Asif Zaman
 % April 24, 2019
 
-%  Functio to generate a sample 2D vector field
+%  Function to generate a sample 2D vector field
 
 
 function [ux, uy] = test_vector_field();

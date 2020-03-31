@@ -15,7 +15,7 @@
 function yout = critical_class(lambda)
 
 
-%  Extracting the real and imaginary parts of the eigne values
+%  Extracting the real and imaginary parts of the eigen values
 R1 = real(lambda(1));
 I1 = imag(lambda(1));
 

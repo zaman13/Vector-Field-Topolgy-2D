@@ -47,13 +47,13 @@ ctrl_locus_test = 'y';
 % ======================================================================>>>
 
 min_tol = 2e-2;   % Defining a threshold value.
-                  % If the differnece between a minima and the minimum values is smaller than
+                  % If the difference between a minima and the minimum values is smaller than
                   % this, then the minima is considered a global minima.
 
 rlim = 1000;      % allowed maximum radial extent of critical points 
                   % (critical points outside this radius will be ignored)
                   
-min_dist_tol = 2; % If seperation between 2 critical points is less than 
+min_dist_tol = 2; % If separation between 2 critical points is less than 
                   % min_dist_tol * dx, then the 2 points are considered
                   % identical.
 
@@ -73,7 +73,7 @@ xL = -3; xU = 3; yL = -2; yU = 2;  % Lower and upper bound of x and y
 
 [Ny,Nx] = size(ux);     % Size of the vector field
 
-x = linspace(xL,xU,Nx); % Defining the space variables from sie of the vector field and the bounds of x and y
+x = linspace(xL,xU,Nx); % Defining the space variables from size of the vector field and the bounds of x and y
 y = linspace(yL,yU,Ny);
 [X,Y] = meshgrid(x,y);  % Defining the meshgrid
 
@@ -156,6 +156,7 @@ tic
 % Find local minima of |u|^2. This will be a good approximate for the zeros
 % of [ux uy]' = 0.
 
+% If the value of a function at a point is lower than its value at neighboring 4 points, then it is a local minima.
 counter = 0;
 for m = 2:Nx-1
     for n = 2:Ny-1
@@ -172,7 +173,7 @@ end
 
 
 
-% Verifying whethere the minimas are zeros (global) or local vallies
+% Verifying whether the minimas are zeros (global) or local vallies
 % This step needs more work
 u2min = min(u2(:));
 
@@ -255,7 +256,7 @@ fprintf('Time required for calculating the critical points = %1.2f sec\n',tcriti
 % 6 = rep_node
 
 
-% Collor array. Associating a different color for each of the critical
+% Color array. Associating a different color for each of the critical
 % point types.
 clr_arr = [0.0   0.4   0.8;
     1.0   0.0   0.0;
@@ -272,7 +273,7 @@ txt_arr = {'Att. focus', 'Rep. focus', 'Saddle', 'Center', 'Att. node','Rep. nod
 for m = 1:length(xc)
     
     temp_J = JacobianInterp(J11,J12,J21,J22,X,Y,xc(m),yc(m));  % Calculating the Jacobian matrix at critical point
-    [temp_V,temp_D] = eig(temp_J);  % Calculating the eigen values and eigen vectors
+    [temp_V,temp_D] = eig(temp_J);  % Calculating the Eigen values and Eigen vectors
     
     temp_lambda = diag(temp_D);     % Eigen values
     
@@ -334,7 +335,7 @@ for m = 1:length(xc)
     else
         % If the matrix is not full rank, then both eigen vectors are the
         % same. Then you can just have 2 lines from them. To draw the
-        % orhtogonal lines to the vector [a,b] you need the vector [-b,a]
+        % orthogonal lines to the vector [a,b] you need the vector [-b,a]
         % or [b, -a] which will create the other 2 lines.
         xslope_set = [temp_V(1,1) -temp_V(1,1) temp_V(2,1) -temp_V(2,1)];
         yslope_set = [temp_V(2,1) -temp_V(2,1) -temp_V(1,1) temp_V(1,1)];
