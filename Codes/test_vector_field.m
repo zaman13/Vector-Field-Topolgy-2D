@@ -21,6 +21,7 @@ y = linspace(yL,yU,Nt);
 % 
 ux = Y2.^2 - X2.^2;
 uy = X2.^2 + Y2.^2 - 2;
+% u = i*ux + j*uy
 
 % size(ux)
 % size(X2)

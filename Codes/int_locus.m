@@ -48,7 +48,7 @@ while flag & n < max_length
     ylocus(n+1) = ylocus(n) + yslope*dy*red_fct;
     
     
-    
+%     calculating slope at new position (between the grids)
     xslope = interp2(X,Y,ux,xlocus(n+1),ylocus(n+1));
     yslope = interp2(X,Y,uy,xlocus(n+1),ylocus(n+1));
     

@@ -118,13 +118,13 @@ contourf(X,Y,ux.^2 + uy.^2,40,'linestyle','none'); colorbar; title('|u|^2'); xla
 dx = X(1,2) - X(1,1);
 dy = Y(2,1) - Y(1,1);
 
-
+% D2x = d/dx, DD2x = d^2/dx^2
 [D2x,D2y,DD2x,DD2y] = F_diff_mat_2D_v2(Ny,Nx);  % Loading the finite difference matrices
 
-J11 = reshape(D2x*ux(:)./(2*dx), size(X));
-J12 = reshape(D2y*ux(:)./(2*dy), size(X));
-J21 = reshape(D2x*uy(:)./(2*dx), size(X));
-J22 = reshape(D2y*uy(:)./(2*dy), size(X));
+J11 = reshape(D2x*ux(:)./(2*dx), size(X));  % dux/dx
+J12 = reshape(D2y*ux(:)./(2*dy), size(X));  % dux/dy
+J21 = reshape(D2x*uy(:)./(2*dx), size(X));  % duy/dx
+J22 = reshape(D2y*uy(:)./(2*dy), size(X));  % dut/dy
 
 
 
@@ -150,7 +150,7 @@ J22 = reshape(D2y*uy(:)./(2*dy), size(X));
 
 
 
-%  Calculating the critical points: April 23, 2019
+% Calculating the critical points: April 23, 2019
 % ======================================================================>>>
 tic
 % Find local minima of |u|^2. This will be a good approximate for the zeros
