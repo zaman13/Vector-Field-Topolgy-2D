@@ -29,9 +29,9 @@ x<sub>2</sub> = x<sub>1</sub> + u<sub>x</sub>(x<sub>1</sub>,y<sub>1</sub>) Δx =
 .
 
 x<sub>n</sub> = x<sub>0</sub> + &sum;<sub>i=1</sub><sup>n</sup> u<sub>x</sub>(x<sub>i</sub>,y<sub>i</sub>) Δx
-
+<!-- <sub>x<sub>0</sub></sub><sup>x</sup> -->
 In the continuous limit,
-x = x<sub>0</sub> + ∫<sub>x<sub>0</sub></sub><sup>x</sup> u<sub>x</sub> dx'
+x = x<sub>0</sub> + ∫ u<sub>x</sub> dx'
 
 
 
