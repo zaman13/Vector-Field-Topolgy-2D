@@ -15,6 +15,18 @@ For a test vector filed u<sub>x</sub> = -X<sup>2</sup> + Y<sup>2</sup>, u<sub>y<
 <img src="https://github.com/zaman13/Vector-Field-Topolgy-2D/blob/master/Sample%20output/test_field_1_no_quiver.svg" alt="alt text" width="400">
 </p>
 
+## Theory
+
+### Integral Lines
+
+The integral lines follow the direction of the vector field, denoted here by <b>u</b> = [u<sub>x</sub> u<sub>y</sub>]<sup>T</sup>. For simplicity, we will assume that u is normalized. Let's consider a point on the integarl line denoted by the coordinates (x<sub>0</sub>, y<sub>0</sub>). Considering the locus of the integral line is formed by a discrete set of points (x<sub>0</sub>, y<sub>0</sub>), (x<sub>1</sub>, y<sub>1</sub>), (x<sub>2</sub>, y<sub>2</sub>), ..., (x<sub>n</sub>, y<sub>n</sub>). Then,
+
+x<sub>1</sub> = x<sub>0</sub> + u<sub>x</sub>(x<sub>0</sub>,y<sub>0</sub>) Δx
+
+x<sub>2</sub> = x<sub>1</sub> + u<sub>x</sub>(x<sub>1</sub>,y<sub>1</sub>) Δx = x<sub>0</sub> + u<sub>x</sub>(x<sub>0</sub>,y<sub>0</sub>) Δx +  u<sub>x</sub>(x<sub>1</sub>,y<sub>1</sub>) Δx
+.
+.
+
 
 ## References
 1. J. Helman, and L. Hesselink. "Representation and display of vector field topology in fluid flow data sets." Computer,  vol. 22, pp. 27-36, August 1989.
