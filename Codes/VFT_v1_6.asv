@@ -5,11 +5,15 @@
 % Version 1.3 April 25, 2019
 % Version 1.4.4 April 29, 2019
 % Version 1.5 May 24, 2019
+% Version 1.6 April 7, 2020
+%         Included the definition of the space variables within the
+%         text_vector_field.m file.
 
 
 
 % Functions required
 % 1. tes_vector_field()   :  If a test vector field is required to be loaded
+%                            v1.6 the space variables X,Y are also outputted now along with ux and uy.   
 % 2. F_diff_mat_2D_v2(.)  :  Load the finite difference matrices
 % 3. JacobianInterp(.)    :  A function that evaluates the Jacobian matrix at an arbitrary point
 % 4. critical_class(.)    :  Classifies the critical points from corresponding Eigne values
@@ -39,6 +43,7 @@ locus_write = 'n';
 % Control parameters
 % ======================================================================>>>
 ctrl_locus_test = 'n';
+
 % <<<======================================================================
 
 
@@ -65,17 +70,14 @@ locus_dist_tol = 1e-2;   % Minimum RMS separation between loci for them to be co
 %  Loading the vector field and defining the spatial grid
 % ======================================================================>>>
 
-[ux,uy] = test_vector_field();     % Load a test vector field
-xL = -3; xU = 3; yL = -2; yU = 2;  % Lower and upper bound of x and y
+[X,Y,ux,uy] = test_vector_field();     % Load a test vector field
 
 
-
+% Lower and upper bound of x and y
+xL = min(X(:)); xU = max(X(:)); 
+yL = min(Y(:)); yU = max(Y(:)); 
 
 [Ny,Nx] = size(ux);     % Size of the vector field
-
-x = linspace(xL,xU,Nx); % Defining the space variables from size of the vector field and the bounds of x and y
-y = linspace(yL,yU,Ny);
-[X,Y] = meshgrid(x,y);  % Defining the meshgrid
 
 
 u2 = ux.^2 + uy.^2;     % Squared norm function
@@ -91,11 +93,15 @@ quiver(X,Y,ux,uy);
 
 figure,
 contourf(X,Y,ux,40,'linestyle','none'); colorbar; title('ux'); xlabel('x'); ylabel('y');
+caxis([-max(abs(ux(:))) max(abs(ux(:)))]);
+colormap(jet);
 figure,
 contourf(X,Y,uy,40,'linestyle','none'); colorbar; title('uy'); xlabel('x'); ylabel('y');
+caxis([-max(abs(uy(:))) max(abs(uy(:)))]);
+colormap(jet);
 figure,
 contourf(X,Y,ux.^2 + uy.^2,40,'linestyle','none'); colorbar; title('|u|^2'); xlabel('x'); ylabel('y');
-
+colormap(jet);
 % <<<======================================================================
 
 
@@ -153,8 +159,14 @@ J22 = reshape(D2y*uy(:)./(2*dy), size(X));  % dut/dy
 % Calculating the critical points: April 23, 2019
 % ======================================================================>>>
 tic
+
+
+fprintf('Critical point search:\n');
+fprintf('==============================================\n');
+
 % Find local minima of |u|^2. This will be a good approximate for the zeros
 % of [ux uy]' = 0.
+% Note: April 7, 2020: A better approa
 
 % If the value of a function at a point is lower than its value at neighboring 4 points, then it is a local minima.
 counter = 0;
@@ -170,6 +182,8 @@ for m = 2:Nx-1
         end
     end
 end
+
+fprintf('Initial guess of no. of critical points = %d\n',counter);
 
 
 
@@ -189,6 +203,10 @@ for m = 1:length(xc_guess)
     end
 end
 
+fprintf('Revised no. of critical points = %d\n' ,counter2);
+Mtemp = [xc_guess_v' yc_guess_v'];
+fprintf('(%1.4f %1.4f) \n',Mtemp' );
+
 
 % xc_guess_v = xc_guess;
 % yc_guess_v = yc_guess;
@@ -204,10 +222,16 @@ end
 % yc_guess_v = 0;
 counter = 0;
 for n_critical = 1:length(xc_guess_v)
+  
     x0 = xc_guess_v(n_critical);
     y0 = yc_guess_v(n_critical);
-    [xc_temp,yc_temp] = GridSearch(X,Y,ux,uy,x0,y0);
-    [xc_temp,yc_temp,err_flag] = NewtonRaphson2D(X,Y,ux,uy,J11,J12,J21,J22,xc_temp,yc_temp);
+    
+    fprintf('\nN-R refinement of critical point %i (%1.3f,%1.3f) \n' ,n_critical, x0, y0);
+
+    
+    xc_temp = x0; yc_temp = y0;
+%     [xc_temp,yc_temp] = GridSearch(X,Y,ux,uy,x0,y0);
+    [xc_temp,yc_temp,err_flag] = NewtonRaphson2D(X,Y,ux,uy,J11,J12,J21,J22,xc_temp,yc_temp);  % current critical point
     
     
     % Check if the current critical point is very close to a previously
@@ -215,8 +239,10 @@ for n_critical = 1:length(xc_guess_v)
     % consider the current point as a new critical point.
     min_dist = inf;
     
-    for q = 1:counter
-        dist = sqrt( (xc_temp - xc(q)).^2 + (yc_temp - yc(q)).^2 );
+    % calculate distance from the current critical point to all other
+    % critical points. Then find the minimum distance.
+    for q = 1:counter                                                      % Loop over all previous critical points
+        dist = sqrt( (xc_temp - xc(q)).^2 + (yc_temp - yc(q)).^2 );        % Distance 
         if dist < min_dist
             min_dist = dist;
         end
@@ -224,6 +250,7 @@ for n_critical = 1:length(xc_guess_v)
     
     if min_dist < min_dist_tol*dx
         err_flag = 1;
+        fprintf('Duplicate found. Separation = %1.4f \n',min_dist);
     end
     
     if err_flag ~= 1
@@ -233,7 +260,7 @@ for n_critical = 1:length(xc_guess_v)
         yc(counter) = yc_temp;
     end
     
-    
+    fprintf('Refined root: (%1.4f, %1.4f)\n\n', xc(counter),yc(counter));
 end
 
 
@@ -241,7 +268,9 @@ end
 % yc = 0;
 
 tcritical = toc;
-fprintf('Number of critical points found = %d \n',length(xc));
+fprintf('Final no. of critical points found = %d \n',length(xc));
+Mtemp = [xc' yc'];
+fprintf('(%1.4f %1.4f) \n',Mtemp' );
 fprintf('Time required for calculating the critical points = %1.2f sec\n',tcritical);
 % <<<======================================================================
 
@@ -281,7 +310,10 @@ for m = 1:length(xc)
     
     figure(1); hold on;
     plot(xc(m),yc(m),'Marker','o','MarkerFaceColor',clr_arr(cr_clss(m),:),'markersize',8,'color','none');
+    axis([xL xU yL yU]);
     
+    daspect([1 1 1]);
+    set(gca,'Position',[0.1 0.1 .65 .65]);
 end
 
 if data_write == 'y'

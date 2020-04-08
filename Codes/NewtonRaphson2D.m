@@ -1,5 +1,6 @@
 % Mohammad Asif Zaman
 % April 26, 2019
+% April 7, 2020: Some modifications (text notifications)
 
 % 2D Newton-Raphson to find the exact position of the critical points from an initial guess
 
@@ -16,8 +17,8 @@ xL = min(X(:)); xU = max(X(:)); yL = min(Y(:)); yU = max(Y(:));
 dx = X(1,2) - X(1,1);
 dy = Y(2,1) - Y(1,1);
 
-max_iter = 30;      % Maximum number of iterations for the Newton-Raphson method
-xy_tol = dx./100;   % Desired accuracy. If delta_x and delta_y are smaller than xy_tol, then Newton-Raphson stops.
+max_iter = 100;      % Maximum number of iterations for the Newton-Raphson method
+xy_tol = dx./500;    % Desired accuracy. If delta_x and delta_y are smaller than xy_tol, then Newton-Raphson stops.
 
 
 
@@ -42,6 +43,7 @@ for iter = 1:max_iter
     % Break if the values of delta(1) and delta(2) are smaller than the
     % xy_tol.
     if abs(delta(1)) < xy_tol & abs(delta(2)) < xy_tol
+        fprintf('NR converged at iteration = %d\n', iter);
         break;
     end
 end
