@@ -50,6 +50,7 @@ ctrl_locus_test = 'n';
 
 % Analysis parameters
 % ======================================================================>>>
+N_init_guess = 20;% Guess for number of critical points
 
 min_tol = 2e-2;   % Defining a threshold value.
                   % If the difference between a minima and the minimum values is smaller than
@@ -160,54 +161,100 @@ J22 = reshape(D2y*uy(:)./(2*dy), size(X));  % dut/dy
 % ======================================================================>>>
 tic
 
+% Initial guesses
+% ======================================================================>>>
 
 fprintf('Critical point search:\n');
 fprintf('==============================================\n');
 
+
+counter = 0;
 % Find local minima of |u|^2. This will be a good approximate for the zeros
 % of [ux uy]' = 0.
 % Note: April 7, 2020: A better approach for finding initial guesses should
 % needs to be developed.
 
+% ======================================================
+% April 8, 2020: Disabled
+% ======================================================
+
 % If the value of a function at a point is lower than its value at neighboring 4 points, then it is a local minima.
-counter = 0;
-for m = 2:Nx-1
-    for n = 2:Ny-1
-        if u2(n,m) < u2(n,m-1) & u2(n,m) < u2(n,m+1) & u2(n,m) < u2(n-1,m) & u2(n,m) < u2(n+1,m)
-            counter = counter + 1;
-            xc_guess(counter) = X(n,m);
-            yc_guess(counter) = Y(n,m);
-            xc_ind(counter) = m;
-            yc_ind(counter) = n;
-            
-        end
-    end
+
+
+
+% for m = 2:Nx-1
+%     for n = 2:Ny-1
+%         if u2(n,m) < u2(n,m-1) & u2(n,m) < u2(n,m+1) & u2(n,m) < u2(n-1,m) & u2(n,m) < u2(n+1,m)
+%             counter = counter + 1;
+%             xc_guess(counter) = X(n,m);
+%             yc_guess(counter) = Y(n,m);
+%             xc_ind(counter) = m;
+%             yc_ind(counter) = n;
+%             
+%         end
+%     end
+% end
+% 
+% fprintf('Initial guess of no. of critical points = %d\n',counter);
+% Mtemp = [xc_guess' yc_guess'];
+% fprintf('(%1.4f %1.4f) \n',Mtemp' );
+
+
+
+% =========================================================================
+% April 8, 2020: New approach for finding the guesses for the critical
+% points
+% =========================================================================
+
+% Sorting the norm function to find the minimum values and their location
+fprintf('Guesses of critical points (%i)\n', N_init_guess);
+[u2s, ind_s] = sort(u2(:));
+
+for m = 1:N_init_guess
+    counter = counter + 1;
+    xc_guess(counter) = X(ind_s(m));
+    yc_guess(counter) = Y(ind_s(m));
+    fprintf('(%1.4f %1.4f) \n',xc_guess(counter),yc_guess(counter) );
 end
+    
+% <<<======================================================================
 
-fprintf('Initial guess of no. of critical points = %d\n',counter);
 
-
+% Revising based on difference with global minimum
+% ======================================================================>>>
 
 % Verifying whether the minimas are zeros (global) or local vallies
 % This step needs more work
 u2min = min(u2(:));
 
-
+fprintf('\nRevising\n');
+fprintf('===================================================\n')
 
 counter2 = 0;
 for m = 1:length(xc_guess)
     temp = interp2(X,Y,u2,xc_guess(m),yc_guess(m));
+    fprintf('(%1.4f,%1.4f) -> diff. from minimum = %1.4f', xc_guess(m),yc_guess(m),abs(temp-u2min));
     if abs(temp-u2min) <=  min_tol & xc_guess(m)^2 + yc_guess(m)^2 < rlim^2
+        fprintf(': Accepted');
         counter2 = counter2 + 1;
         xc_guess_v(counter2) = xc_guess(m);
         yc_guess_v(counter2) = yc_guess(m);
+    else
+        fprintf(': Rejected');
     end
+    fprintf('\n');
 end
 
-fprintf('Revised no. of critical points = %d\n' ,counter2);
+fprintf('\nRevised no. of critical points = %d\n' ,counter2);
 Mtemp = [xc_guess_v' yc_guess_v'];
 fprintf('(%1.4f %1.4f) \n',Mtemp' );
+fprintf('===================================================\n')
+% <<<======================================================================
 
+
+
+% Refining roots using Newton-Raphson method
+% ======================================================================>>>
 
 % xc_guess_v = xc_guess;
 % yc_guess_v = yc_guess;
@@ -273,6 +320,8 @@ fprintf('Final no. of critical points found = %d \n',length(xc));
 Mtemp = [xc' yc'];
 fprintf('(%1.4f %1.4f) \n',Mtemp' );
 fprintf('Time required for calculating the critical points = %1.2f sec\n',tcritical);
+% <<<======================================================================
+
 % <<<======================================================================
 
 
