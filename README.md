@@ -19,7 +19,7 @@ For a test vector filed u<sub>x</sub> = -X<sup>2</sup> + Y<sup>2</sup>, u<sub>y<
 
 ### Integral Lines
 
-The integral lines follow the direction of the vector field, denoted here by <b>u</b> = [u<sub>x</sub> u<sub>y</sub>]<sup>T</sup>. For simplicity, we will assume that u is normalized. Let's consider a point on the integarl line denoted by the coordinates (x<sub>0</sub>, y<sub>0</sub>). Considering the locus of the integral line is formed by a discrete set of points (x<sub>0</sub>, y<sub>0</sub>), (x<sub>1</sub>, y<sub>1</sub>), (x<sub>2</sub>, y<sub>2</sub>), ..., (x<sub>n</sub>, y<sub>n</sub>). Then,
+The integral lines follow the direction of the vector field, denoted here by <b>u</b> = [u<sub>x</sub> u<sub>y</sub>]<sup>T</sup>. For simplicity, we will assume that u is normalized. Let's consider a point on the integral line denoted by the coordinates (x<sub>0</sub>, y<sub>0</sub>). Considering the locus of the integral line is formed by a discrete set of points (x<sub>0</sub>, y<sub>0</sub>), (x<sub>1</sub>, y<sub>1</sub>), (x<sub>2</sub>, y<sub>2</sub>), ..., (x<sub>n</sub>, y<sub>n</sub>). Then,
 
 x<sub>1</sub> = x<sub>0</sub> + u<sub>x</sub>(x<sub>0</sub>,y<sub>0</sub>) Δx
 
@@ -28,7 +28,7 @@ x<sub>2</sub> = x<sub>1</sub> + u<sub>x</sub>(x<sub>1</sub>,y<sub>1</sub>) Δx =
 .
 .
 
-x<sub>n</sub> = x<sub>0</sub> + &sum;<sub>i=1</sub><sup>n</sup> u<sub>x</sub>(x<sub>i</sub>,y<sub>i</sub>) Δx
+x<sub>n</sub> = x<sub>0</sub> + &sum;<sub>i=0</sub><sup>n-1</sup> u<sub>x</sub>(x<sub>i</sub>,y<sub>i</sub>) Δx
 <!-- <sub>x<sub>0</sub></sub><sup>x</sup> -->
 In the continuous limit,
 x = x<sub>0</sub> + ∫ u<sub>x</sub> dx'
