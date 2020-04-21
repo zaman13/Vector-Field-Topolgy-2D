@@ -11,7 +11,7 @@ Iy = spdiags(ey,0,Ny,Ny);
 % Constructing the 1D diffentiation matrices
 %==============================================
 
-% It is necessary to develop different matrixed for D1dx and D1dy as Nx and
+% It is necessary to develop different matrices for D1dx and D1dy as Nx and
 % Ny may have different values. So, the dimensions for the two cases
 % might be different. 
 
