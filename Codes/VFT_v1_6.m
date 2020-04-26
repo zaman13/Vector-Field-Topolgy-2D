@@ -16,7 +16,7 @@
 %                            v1.6 the space variables X,Y are also outputted now along with ux and uy.   
 % 2. F_diff_mat_2D_v2(.)  :  Load the finite difference matrices
 % 3. JacobianInterp(.)    :  A function that evaluates the Jacobian matrix at an arbitrary point
-% 4. critical_class(.)    :  Classifies the critical points from corresponding Eigne values
+% 4. critical_class(.)    :  Classifies the critical points from corresponding Eigen values
 % 5. int_locus(.)         :  Draws the integral lines
 % 6. drawArrow(.)         :  Function to draw arrows on the integral lines
 
