@@ -1,10 +1,23 @@
 # Vector-Field-Topolgy-2D
 
-<p float="left">
-<a href = "https://github.com/zaman13/Vector-Field-Topolgy-2D/tree/master/Codes"> <img src="https://img.shields.io/badge/Language-Python, Matlab-blue" alt="alt text"> </a>
+<table border="0">
+ <tr>
+    <td><b style="font-size:30px">Python version</b></td>
+    <td><b style="font-size:30px">Matlab version</b></td>
+ </tr>
+ <tr>
+    <td><p float="left">
+<a href = "https://github.com/zaman13/Vector-Field-Topolgy-2D/tree/master/Codes"> <img src="https://img.shields.io/badge/Language-Python-blue" alt="alt text"> </a>
+<a href = "https://github.com/zaman13/Vector-Field-Topolgy-2D/blob/master/LICENSE"> <img src="https://img.shields.io/github/license/zaman13/Poisson-solver-2D" alt="alt text"></a>
+<a href = "https://github.com/zaman13/Vector-Field-Topolgy-2D/tree/master/Codes"> <img src="https://img.shields.io/badge/version-1.0-red" alt="alt text"> </a>
+</p></td>
+    <td><p float="left">
+<a href = "https://github.com/zaman13/Vector-Field-Topolgy-2D/tree/master/Codes"> <img src="https://img.shields.io/badge/Language-Matlab-blue" alt="alt text"> </a>
 <a href = "https://github.com/zaman13/Vector-Field-Topolgy-2D/blob/master/LICENSE"> <img src="https://img.shields.io/github/license/zaman13/Poisson-solver-2D" alt="alt text"></a>
 <a href = "https://github.com/zaman13/Vector-Field-Topolgy-2D/tree/master/Codes"> <img src="https://img.shields.io/badge/version-1.6-red" alt="alt text"> </a>
-</p>
+</p></td>
+ </tr>
+</table>
 
 
 <img align = "right" src="https://github.com/zaman13/Vector-Field-Topolgy-2D/blob/master/Sample%20output/Python%20output/out3.svg" alt="alt text" width="480">
