@@ -1,20 +1,41 @@
 # Vector-Field-Topolgy-2D
 
 <p float="left">
-<a href = "https://github.com/zaman13/Vector-Field-Topolgy-2D/tree/master/Codes"> <img src="https://img.shields.io/badge/Language-Matlab-blue" alt="alt text"> </a>
+<a href = "https://github.com/zaman13/Vector-Field-Topolgy-2D/tree/master/Codes"> <img src="https://img.shields.io/badge/Language-Python, Matlab-blue" alt="alt text"> </a>
 <a href = "https://github.com/zaman13/Vector-Field-Topolgy-2D/blob/master/LICENSE"> <img src="https://img.shields.io/github/license/zaman13/Poisson-solver-2D" alt="alt text"></a>
 <a href = "https://github.com/zaman13/Vector-Field-Topolgy-2D/tree/master/Codes"> <img src="https://img.shields.io/badge/version-1.6-red" alt="alt text"> </a>
 </p>
 
 
+<img align = "right" src="https://github.com/zaman13/Vector-Field-Topolgy-2D/blob/master/Sample%20output/Python%20output/out3.svg" alt="alt text" width="480">
+
 Vector field topology (VFT) [Ref. 1, 2] is an intuitive visualization technique of vector fields. It is a representation of the global topology based on an analysis of the critical points and their connections. For a complex vector field, it can be difficult to understand the field properties by plotting streamlines or field lines (quiver). By showing only the critical points and key integral lines connecting those points, the VFT technique produces a minimalistic intuitive representation of the field.
 
 VFT methods have been used in many fields including fluid flow analysis, computer vision and photonics.  
 
+The algorithm was initially implemented in MATLAB. A python version has been added since. The two versions are not equivalent. The python implementation contains more upgraded algorithms for identifying the critical points. 
+
 ## Usage
 Please cite the papers mentioned in the reference section and this github repository if you use the code for your research/work.
 
+
+
+
 ## Sample output
+### Python version <a href = "https://github.com/zaman13/Vector-Field-Topolgy-2D/tree/master/Codes/Python%20codes/Version%201.0"> <img src="https://img.shields.io/badge/Language-Python-blue" alt="alt text"> </a>
+
+For a test vector filed u<sub>x</sub> = sin(X+Y)exp(-0.5X<sup>2</sup> - 0.3Y<sup>2</sup>), u<sub>y</sub> = cos(X-Y)exp(-0.5X<sup>2</sup> - 0.3Y<sup>2</sup>), the calculated vector field topology is shown below (with quiver lines and without quiver lines):
+
+<p float="left">
+<img src="https://github.com/zaman13/Vector-Field-Topolgy-2D/blob/master/Sample%20output/Python%20output/out2.svg" alt="alt text" width="400">
+
+<img src="https://github.com/zaman13/Vector-Field-Topolgy-2D/blob/master/Sample%20output/Python%20output/out1.svg" alt="alt text" width="400">
+</p>
+
+The colors on the integral lines correspond to the magnitude of the field.
+
+### Matlab version <a href = "https://github.com/zaman13/Vector-Field-Topolgy-2D/tree/master/Codes/Matlab%20codes/Version%201.6"> <img src="https://img.shields.io/badge/Language-Matlab-blue" alt="alt text"> </a>
+
 For a test vector filed u<sub>x</sub> = -X<sup>2</sup> + Y<sup>2</sup>, u<sub>y</sub> = X<sup>2</sup> + Y<sup>2</sup> - 2, the calculated vector field topology is shown below (with quiver lines and without quiver lines):
 
 <p float="left">
