@@ -41,9 +41,11 @@ For a test vector filed u<sub>x</sub> = sin(X+Y)exp(-0.5X<sup>2</sup> - 0.3Y<sup
 
 <p float="left">
 <img src="https://github.com/zaman13/Vector-Field-Topolgy-2D/blob/master/Sample%20output/Python%20output/out2.svg" alt="alt text" width="400">
-
 <img src="https://github.com/zaman13/Vector-Field-Topolgy-2D/blob/master/Sample%20output/Python%20output/out1.svg" alt="alt text" width="400">
 </p>
+
+
+
 
 The colors on the integral lines correspond to the magnitude of the field.
 
@@ -53,7 +55,6 @@ For a test vector filed u<sub>x</sub> = -X<sup>2</sup> + Y<sup>2</sup>, u<sub>y<
 
 <p float="left">
 <img src="https://github.com/zaman13/Vector-Field-Topolgy-2D/blob/master/Sample%20output/test_field_1.svg" alt="alt text" width="400">
-
 <img src="https://github.com/zaman13/Vector-Field-Topolgy-2D/blob/master/Sample%20output/test_field_1_no_quiver.svg" alt="alt text" width="400">
 </p>
 
